@@ -1,4 +1,8 @@
 var table = document.getElementById("Availability");
+var selected_date = sessionStorage.getItem("selected_date");
+//console.log(selected_date);
+
+document.getElementById("selected_date").innerHTML = selected_date;
 
 function sameCol() {
 

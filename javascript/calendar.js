@@ -79,9 +79,9 @@ function showCalendar(month, year) {
             else {
                 let cell = document.createElement("td");
                 let cellText = document.createTextNode(date);
-               if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+               /*if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
                     cell.classList.add("bg-info");
-                } // color today's date
+                }*/ // color today's date
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 date++;
@@ -93,13 +93,28 @@ function showCalendar(month, year) {
         tbl.appendChild(row); // appending each row into calendar body.
     }
     
-    //點擊顯示日期(未完)
+    //點擊顯示日期
     var table = document.getElementById("calendar");
+    
+
     if (table != null) {
         for (var i = 1; i < table.rows.length; i++) {
             for (var j = 0; j < table.rows[i].cells.length; j++){
                 table.rows[i].cells[j].onclick = function(){
-                    
+                    var window_text = "The date you choose is ";
+                    var date_text="";
+                    date_text+=months[month];
+                    date_text+=" ";
+                    date_text+=this.innerHTML;
+                    date_text+=" ";
+                    date_text+= String(currentYear);
+                    window_text+=date_text;
+                    var w_confirm = window.confirm(window_text);
+                    if(w_confirm){
+                        var selected_date = date_text;
+                        sessionStorage.setItem("selected_date",selected_date);
+                        window.location.href="/Virtual-Room-Reservation-Assistant/availability.php"
+                    }                
                 };
             }
         }

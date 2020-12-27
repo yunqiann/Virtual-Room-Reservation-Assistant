@@ -42,6 +42,8 @@
         </span>
       </div>
     </nav>
+    <h4>The date you choose is</h4>
+    <h5 id="selected_date"></h5>
     <div class="col-sm-4 col-md-7 col-lg-4 mt-5">
       <!-- Modal HTML Markup -->
       <div id="myModal" class="modal fade">
@@ -134,7 +136,7 @@
           <tr>
             <th>13:00-14:00</th>
             <td></td>
-            <!-- <td class="not_available"></td> -->
+            <td></td>
             <td></td>
             <td></td>
           </tr>
@@ -149,7 +151,7 @@
             <th>15:00-16:00</th>
             <td></td>
             <td></td>
-            <!-- <td class="not_available"></td> -->
+            <td></td>
             <td></td>
           </tr>
           <tr>
@@ -162,6 +164,7 @@
         </tbody>
 
       </table>
+ 
     </div>
   </div>
   <button type="button" class="btn btn-primary" onclick="confirmTimeSlot()">Sumbit</button>
