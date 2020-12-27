@@ -69,16 +69,11 @@ class DBController
 	function SearchRecord($email)
 	{
 		$id = $this->SearchuserID($email);
-		$query = "SELECT useDate, timeSlot, roomID, member1, member2, member3, member4 FROM Record where userID='$id'";
+		$query = "SELECT DATE_FORMAT(useDate, '%Y/%m/%d'), timeSlot, roomID, member1, member2, member3, member4 FROM Record where userID='$id'";
 		if ($result = mysqli_query($this->conn, $query)) {
-			// while ($row = mysqli_fetch_assoc($result)) {
-			// 	$rows[] = $row;
-			// }
-			$row[] =  mysqli_fetch_all($result);
-			die("$row");
-		} else die("Error:" . mysqli_error($this->conn));
-
-		return $rows;
+			$row = mysqli_fetch_all($result);
+		} else die("Error:" . mysqli_error($this->con));
+		return $row;
 	}
 
 	function SearchuserID($email)

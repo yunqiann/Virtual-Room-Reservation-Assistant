@@ -59,7 +59,7 @@ require_once "Account/config.php";
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <!-- <tr>
             <td>2020/01/01</td>
             <td>09:00~12:00</td>
             <td>B</td>
@@ -71,7 +71,7 @@ require_once "Account/config.php";
               <button type="button" class="btn btn-sm btn-secondary">Edit</button>
               <button type="button" class="btn btn-sm btn-danger">Delete</button>
             </td>
-          </tr>
+          </tr> -->
 
           <?php
           $objDBController = new DBController();
@@ -80,7 +80,7 @@ require_once "Account/config.php";
           foreach ($records as $record) {
             echo "<tr>";
             foreach ($record as $key) {
-              echo "<td> . $key . </td>";
+              echo "<td>$key</td>";
             }
             echo "<td>";
             echo '<button type="button" class="btn btn-sm btn-secondary">Edit</button>';

@@ -113,7 +113,7 @@ function showCalendar(month, year) {
                     if(w_confirm){
                         var selected_date = date_text;
                         sessionStorage.setItem("selected_date",selected_date);
-                        window.location.href="/Virtual-Room-Reservation-Assistant/availability.php"
+                        window.location.href="availability.php"
                     }                
                 };
             }

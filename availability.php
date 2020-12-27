@@ -1,4 +1,44 @@
-<?php require_once "Account/google_auth.php"; ?>
+<?php
+require_once "Account/google_auth.php";
+
+// if (isset($_POST['date'])) {
+//   $date = $_POST("date");
+// }
+// if (isset($_POST['host-email'])) {
+//   $time = $_POST['host-email'];
+// }
+// if (isset($_POST['host-email'])) {
+//   $room = $_POST['host-email'];
+// }
+// $date = '';
+// $time = '';
+// $room = '';
+// if (isset($_POST['host-email'])) {
+//   $email = $_POST['host-email'];
+// }
+// if (isset($_POST['member-email1'])) {
+//   $member1 = $_POST("member-email1");
+// } else $member1 = '';
+// if (isset($_POST['member-email2'])) {
+//   $member2 = $_POST("member-email2");
+// } else $member2 = '';
+// if (isset($_POST['member-email3'])) {
+//   $member3 = $_POST("member-email3");
+// } else $member3 = '';
+// if (isset($_POST['member-email4'])) {
+//   $member4 = $_POST("member-email4");
+// } else $member4 = '';
+
+// $date = $_POST("host-email");
+// $time = $_POST("host-email");
+// $room = $_POST("host-email");
+// $email = $_POST("host-email");
+// $member1 = $_POST("member-email1");
+// $member2 = $_POST("member-email2");
+// $member3 = $_POST("member-email3");
+// $member4 = $_POST("member-email4");
+
+?>
 <!-- <!DOCTYPE html> -->
 <!-- <html lang="en"> -->
 <html>
@@ -43,7 +83,7 @@
       </div>
     </nav>
     <h4>The date you choose is</h4>
-    <h5 id="selected_date"></h5>
+    <p id="selected_date"></p>
     <div class="col-sm-4 col-md-7 col-lg-4 mt-5">
       <!-- Modal HTML Markup -->
       <div id="myModal" class="modal fade">
@@ -56,11 +96,15 @@
               <form role="form" method="POST" action="">
                 <input type="hidden" name="_token" value="">
                 <div class="form-group">
-                  <label class="control-label">Date: <span id="date"></span></label>
+                  <label class="control-label">Date: <br></label>
+                  <!-- <input type=text name="selected_date" value=<script>$("#selected_date").val()</script> /> -->
+                  <!-- value=<script>$("#selected_date").val($("#selectedDate").val());</script> -->
+                  <!-- <label class="control-label">Date: <br><span id="selected_date"></span></label> -->
+                  <!-- <label class="control-label">Date: <br><input type=text id="selected_date" name="selected_date"></label> -->
                 </div>
                 <div class="form-group">
-                  <label class="control-label">Time:<br><span id="time"></span></label>
-                  <input type="member-email" class="from-control input-sm" name="time" value=<span id="time"></span> readonly="readonly">
+                  <label class="control-label">Time: <br><span id="time"></span></label>
+                  <!-- <input type="member-email" class="from-control input-sm" name="time" readonly="readonly"> -->
                 </div>
                 <div class="form-group">
                   <label class="control-label">Room: <span id="room"></span></label>
@@ -164,7 +208,7 @@
         </tbody>
 
       </table>
- 
+
     </div>
   </div>
   <button type="button" class="btn btn-primary" onclick="confirmTimeSlot()">Sumbit</button>
