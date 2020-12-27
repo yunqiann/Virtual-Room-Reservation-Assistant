@@ -58,26 +58,25 @@
                 </div>
                 <div class="form-group">
                   <label class="control-label">Time:<br><span id="time"></span></label>
+                  <input type="member-email" class="from-control input-sm" name="time" value=<span id="time"></span> readonly="readonly">
                 </div>
                 <div class="form-group">
                   <label class="control-label">Room: <span id="room"></span></label>
                 </div>
                 <div class="form-group">
                   <label class="control-label">Host(Email Address)</label>
-                  <input type="host-email" class="form-control input-sm" name="host-email">
+                  <input type="host-email" class="form-control input-sm" name="host-email" value=<?php echo $userData["email"]; ?> readonly="readonly" />
                 </div>
                 <div class="form-group">
                   <label class="control-label">Member(Email Addresses)</label>
-                  <input type="member-email" class="form-control input-sm" name="member-email"><br>
-                  <input type="member-email" class="form-control input-sm" name="member-email"><br>
-                  <input type="member-email" class="form-control input-sm" name="member-email"><br>
-                  <input type="member-email" class="form-control input-sm" name="member-email"><br>
-                  <input type="member-email" class="form-control input-sm" name="member-email"><br>
-                  <input type="member-email" class="form-control input-sm" name="member-email"><br>
+                  <input type="member-email" class="form-control input-sm" name="member-email1"><br>
+                  <input type="member-email" class="form-control input-sm" name="member-email2"><br>
+                  <input type="member-email" class="form-control input-sm" name="member-email3"><br>
+                  <input type="member-email" class="form-control input-sm" name="member-email4"><br>
                 </div>
                 <div class="form-group">
                   <div>
-                    <button type="save" class="btn btn-success">Save</button>
+                    <button type="submit" class="btn btn-success">Sava</button>
                     <button type="cancel" class="btn btn-secondary">Cancel</button>
                   </div>
                 </div>
@@ -98,134 +97,64 @@
         </thead>
         <tbody>
           <tr>
-            <th>08:00-08:30</th>
+            <th>08:00-09:00</th>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
           </tr>
           <tr>
-            <th>08:30-09:00</th>
+            <th>09:00-10:00</th>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
           </tr>
           <tr>
-            <th>09:00-09:30</th>
+            <th>10:00-11:00</th>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
           </tr>
           <tr>
-            <th>09:30-10:00</th>
+            <th>11:00-12:00</th>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
           </tr>
           <tr>
-            <th>10:00-10:30</th>
+            <th>12:00-13:00</th>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
           </tr>
           <tr>
-            <th>10:30-11:00</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>11:00-11:30</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>11:30-12:00</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>12:00-12:30</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>12:00-12:30</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>12:30-13:00</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>13:00-13:30</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>13:30-14:00</th>
+            <th>13:00-14:00</th>
             <td></td>
             <!-- <td class="not_available"></td> -->
             <td></td>
             <td></td>
           </tr>
           <tr>
-            <th>14:00-14:30</th>
+            <th>14:00-15:00</th>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
           </tr>
           <tr>
-            <th>14:30-15:00</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>15:00-15:30</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>15:30-16:00</th>
+            <th>15:00-16:00</th>
             <td></td>
             <td></td>
             <!-- <td class="not_available"></td> -->
             <td></td>
           </tr>
           <tr>
-            <th>16:00-16:30</th>
+            <th>16:00-17:00</th>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <th>16:30-17:00</th>
-            <!-- <td class="not_available"></td> -->
             <td></td>
             <td></td>
             <td></td>

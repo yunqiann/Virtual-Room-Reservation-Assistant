@@ -1,4 +1,7 @@
-<?php require_once "Account/google_auth.php"; ?>
+<?php
+require_once "Account/google_auth.php";
+require_once "Account/config.php";
+?>
 <!-- <!DOCTYPE html> -->
 <!-- <html lang="en"> -->
 <html>
@@ -48,7 +51,10 @@
             <th>Date</th>
             <th>Time</th>
             <th>Room</th>
-            <th>Detail</th>
+            <th>Member1</th>
+            <th>Member2</th>
+            <th>Member3</th>
+            <th>Member4</th>
             <th>Modify</th>
           </tr>
         </thead>
@@ -57,42 +63,32 @@
             <td>2020/01/01</td>
             <td>09:00~12:00</td>
             <td>B</td>
-            <td>
-              <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                See more details
-              </button>
-
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Meeting Information</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <li>Date:</li>
-                      <li>Time:</li>
-                      <li>Room:</li>
-                      <li>Host:</li>
-                      <li>Members:</li>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </td>
+            <td>a@mail</td>
+            <td>b@mail</td>
+            <td>c@mail</td>
+            <td></td>
             <td>
               <button type="button" class="btn btn-sm btn-secondary">Edit</button>
               <button type="button" class="btn btn-sm btn-danger">Delete</button>
             </td>
           </tr>
+
+          <?php
+          $objDBController = new DBController();
+          $records = $objDBController->SearchRecord($userData['email']);
+          // die("$records[3][0]");
+          foreach ($records as $record) {
+            echo "<tr>";
+            foreach ($record as $key) {
+              echo "<td> . $key . </td>";
+            }
+            echo "<td>";
+            echo '<button type="button" class="btn btn-sm btn-secondary">Edit</button>';
+            echo '<button type="button" class="btn btn-sm btn-danger">Delete</button>';
+            echo "</td>";
+            echo "</tr>";
+          }
+          ?>
 
         </tbody>
 

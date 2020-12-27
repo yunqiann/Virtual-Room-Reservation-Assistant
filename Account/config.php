@@ -52,4 +52,43 @@ class DBController
 			die("ERROR: MySQL Insert");
 		}
 	}
+
+	function insertReocrd($recordData)
+	{
+		$id = $this->SearchuserID($recordData->email);
+		$query = "INSERT INFO Record VALUES ('$recordData->useData', '$recordData->timeSlot', 
+				'$id', '$recordData->roomID', '$recordData->member1', 
+				'$recordData->member2', '$recordData->member3', '$recordData->member4'";
+
+		$result = mysqli_query($this->conn, $query);
+		if ($result === false) {
+			die("ERROR: MySQL Insert");
+		}
+	}
+
+	function SearchRecord($email)
+	{
+		$id = $this->SearchuserID($email);
+		$query = "SELECT useDate, timeSlot, roomID, member1, member2, member3, member4 FROM Record where userID='$id'";
+		if ($result = mysqli_query($this->conn, $query)) {
+			// while ($row = mysqli_fetch_assoc($result)) {
+			// 	$rows[] = $row;
+			// }
+			$row[] =  mysqli_fetch_all($result);
+			die("$row");
+		} else die("Error:" . mysqli_error($this->conn));
+
+		return $rows;
+	}
+
+	function SearchuserID($email)
+	{
+		$query = "select id from `USERS` where email='$email'";
+		if ($result = mysqli_query($this->conn, $query)) {
+			$row = mysqli_fetch_row($result);
+			$id = $row[0];
+		} else die("Error:" . mysqli_error($this->conn));
+
+		return $id;
+	}
 }
