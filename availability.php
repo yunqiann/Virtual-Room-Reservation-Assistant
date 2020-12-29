@@ -82,8 +82,7 @@ require_once "Account/google_auth.php";
         </span>
       </div>
     </nav>
-    <h4>The date you choose is</h4>
-    <p id="selected_date"></p>
+    <h4>The date you choose is  <span id="selected_date"></span> </h4>
     <div class="col-sm-4 col-md-7 col-lg-4 mt-5">
       <!-- Modal HTML Markup -->
       <div id="myModal" class="modal fade">
@@ -96,22 +95,22 @@ require_once "Account/google_auth.php";
               <form role="form" method="POST" action="">
                 <input type="hidden" name="_token" value="">
                 <div class="form-group">
-                  <label class="control-label">Date: <br></label>
+                  <label class="control-label" name="date" >Date: <span name="display_date" id="display_date"></span></label>
                   <!-- <input type=text name="selected_date" value=<script>$("#selected_date").val()</script> /> -->
                   <!-- value=<script>$("#selected_date").val($("#selectedDate").val());</script> -->
                   <!-- <label class="control-label">Date: <br><span id="selected_date"></span></label> -->
                   <!-- <label class="control-label">Date: <br><input type=text id="selected_date" name="selected_date"></label> -->
                 </div>
                 <div class="form-group">
-                  <label class="control-label">Time: <br><span id="time"></span></label>
+                  <label class="control-label" name="time">Time: <span name="display_time" id="display_time"></span></label>
                   <!-- <input type="member-email" class="from-control input-sm" name="time" readonly="readonly"> -->
                 </div>
                 <div class="form-group">
-                  <label class="control-label">Room: <span id="room"></span></label>
+                  <label class="control-label" name="room">Room: <span name="display_room" id="display_room"><span></label>
                 </div>
                 <div class="form-group">
-                  <label class="control-label">Host(Email Address)</label>
-                  <input type="host-email" class="form-control input-sm" name="host-email" value=<?php echo $userData["email"]; ?> readonly="readonly" />
+                  <label class="control-label">Host(Email Address)<span name="display_host_email" id="display_host_email"></span></label>
+                  <!--<input type="host-email" class="form-control input-sm" name="host-email" value=<?php echo $userData["email"]; ?> readonly="readonly" />-->
                 </div>
                 <div class="form-group">
                   <label class="control-label">Member(Email Addresses)</label>
@@ -122,7 +121,7 @@ require_once "Account/google_auth.php";
                 </div>
                 <div class="form-group">
                   <div>
-                    <button type="submit" class="btn btn-success">Sava</button>
+                    <button type="submit" class="btn btn-success">Save</button>
                     <button type="cancel" class="btn btn-secondary">Cancel</button>
                   </div>
                 </div>

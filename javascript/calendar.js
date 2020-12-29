@@ -94,28 +94,31 @@ function showCalendar(month, year) {
     }
     
     //點擊顯示日期
+    //待補 空格不可選
     var table = document.getElementById("calendar");
-    
 
     if (table != null) {
         for (var i = 1; i < table.rows.length; i++) {
             for (var j = 0; j < table.rows[i].cells.length; j++){
-                table.rows[i].cells[j].onclick = function(){
-                    var window_text = "The date you choose is ";
-                    var date_text="";
-                    date_text+=months[month];
-                    date_text+=" ";
-                    date_text+=this.innerHTML;
-                    date_text+=" ";
-                    date_text+= String(currentYear);
-                    window_text+=date_text;
-                    var w_confirm = window.confirm(window_text);
-                    if(w_confirm){
-                        var selected_date = date_text;
-                        sessionStorage.setItem("selected_date",selected_date);
-                        window.location.href="availability.php"
-                    }                
-                };
+                
+                    table.rows[i].cells[j].onclick = function(){
+                        var window_text = "The date you choose is ";
+                        var date_text="";
+                        date_text+=months[month];
+                        date_text+=" ";
+                        date_text+=this.innerHTML;
+                        date_text+=" ";
+                        date_text+= String(currentYear);
+                        window_text+=date_text;
+                        var w_confirm = window.confirm(window_text);
+                        if(w_confirm){
+                            var selected_date = date_text;
+                            sessionStorage.setItem("selected_date",selected_date);
+                            window.location.href="availability.php"
+                         }           
+                     };
+                
+                
             }
         }
     }
