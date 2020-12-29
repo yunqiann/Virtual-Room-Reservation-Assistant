@@ -94,13 +94,13 @@ function showCalendar(month, year) {
     }
     
     //點擊顯示日期
-    //待補 空格不可選
     var table = document.getElementById("calendar");
 
     if (table != null) {
         for (var i = 1; i < table.rows.length; i++) {
             for (var j = 0; j < table.rows[i].cells.length; j++){
                 
+                    if(j>=firstDay){
                     table.rows[i].cells[j].onclick = function(){
                         var window_text = "The date you choose is ";
                         var date_text="";
@@ -117,7 +117,7 @@ function showCalendar(month, year) {
                             window.location.href="availability.php"
                          }           
                      };
-                
+                    }
                 
             }
         }
