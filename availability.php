@@ -37,7 +37,32 @@ require_once "Account/google_auth.php";
 // $member2 = $_POST("member-email2");
 // $member3 = $_POST("member-email3");
 // $member4 = $_POST("member-email4");
+//connect to database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "test";
 
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT useDate, timeSlot, roomID FROM record";
+$result = $conn->query($sql);
+$date = $_GET['date'];
+
+if($result->num_rows > 0){
+       // output data of each row
+       while($row = $result->fetch_assoc()) {
+        if($row["useDate"]==$date){
+          //test database connection
+          /*echo "<br> useDate: ". $row["useDate"]. " - timeSlot: ". $row["timeSlot"]. " " . $row["roomID"] . "<br>";*/
+        }
+      }
+}
 ?>
 <!-- <!DOCTYPE html> -->
 <!-- <html lang="en"> -->

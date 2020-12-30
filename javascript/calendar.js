@@ -104,17 +104,18 @@ function showCalendar(month, year) {
                     table.rows[i].cells[j].onclick = function(){
                         var window_text = "The date you choose is ";
                         var date_text="";
-                        date_text+=months[month];
-                        date_text+=" ";
-                        date_text+=this.innerHTML;
-                        date_text+=" ";
                         date_text+= String(currentYear);
+                        date_text+="-";
+                        date_text+=String(month+1);
+                        date_text+="-";
+                        date_text+=this.innerHTML;                       
+                        
                         window_text+=date_text;
                         var w_confirm = window.confirm(window_text);
                         if(w_confirm){
                             var selected_date = date_text;
                             sessionStorage.setItem("selected_date",selected_date);
-                            window.location.href="availability.php"
+                            window.location.href="availability.php"+"?date="+selected_date;
                          }           
                      };
                     }

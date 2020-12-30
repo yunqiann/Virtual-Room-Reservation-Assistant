@@ -3,7 +3,6 @@ var selected_date = sessionStorage.getItem("selected_date");
 
 document.getElementById("selected_date").innerHTML = selected_date;
 
-
 function sameCol() {
 
     var col_array = [];
