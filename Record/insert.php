@@ -27,4 +27,6 @@ for ($i = 0; $i < count($time); $i++) {
     $objDBController->insertReocrd($record);
 }
 
+unset($objDBController);
+
 echo json_encode($record);

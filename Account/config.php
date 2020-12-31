@@ -68,11 +68,12 @@ class DBController
 
 	function deleteReocrd($record)
 	{
-		$query = "DELETE FROM Record WHERE roomID='$record->room' and timeSlot='$record->time'";
+		$query = "DELETE FROM Record WHERE useDate='$record->date' and roomID='$record->room' and timeSlot='$record->time'";
 		$result = mysqli_query($this->conn, $query);
 		if ($result === false) {
 			die("ERROR: MySQL Delete");
 		}
+		// die($result);
 	}
 
 	function SearchRecord($email)
