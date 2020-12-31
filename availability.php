@@ -53,17 +53,27 @@ if ($conn->connect_error) {
 $sql = "SELECT useDate, timeSlot, roomID FROM record";
 $result = $conn->query($sql);
 $date = $_GET['date'];
-
+$borrowedStr="";
 if($result->num_rows > 0){
        // output data of each row
        while($row = $result->fetch_assoc()) {
         if($row["useDate"]==$date){
           //test database connection
+          $tmpStr="[";
+          $tmpStr.=$row["roomID"];
+          $tmpStr.=",";
+          $tmpStr.=$row["timeSlot"];
+          $borrowedStr.=$tmpStr;
+          $borrowedStr.="] ";
           /*echo "<br> useDate: ". $row["useDate"]. " - timeSlot: ". $row["timeSlot"]. " " . $row["roomID"] . "<br>";*/
         }
       }
 }
+//test borrowedArray
+$color= $borrowedStr;
 ?>
+<script type="text/javascript">var color = "<?php echo $color; ?>";</script>
+
 <!-- <!DOCTYPE html> -->
 <!-- <html lang="en"> -->
 <html>
@@ -71,7 +81,6 @@ if($result->num_rows > 0){
 <head>
   <meta charset="UTF-8">
   <title>Virtual Room Reservation Assistant</title>
-
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">

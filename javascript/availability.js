@@ -3,6 +3,9 @@ var selected_date = sessionStorage.getItem("selected_date");
 
 document.getElementById("selected_date").innerHTML = selected_date;
 
+alert(color);//不知道為什麼只要改color變數名稱這個功能就會爆掉
+
+
 function sameCol() {
 
     var col_array = [];
@@ -45,6 +48,7 @@ function cellBGColor(tableCell) {
 
 
 if (table != null) {
+
     for (var i = 1; i < table.rows.length; i++) {
         for (var j = 1; j < table.rows[i].cells.length; j++) {
             table.rows[i].cells[j].onclick = function () {
