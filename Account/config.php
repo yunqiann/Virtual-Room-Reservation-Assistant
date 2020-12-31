@@ -53,12 +53,23 @@ class DBController
 		}
 	}
 
-	function insertReocrd($recordData)
+	function insertReocrd($record)
 	{
-		$id = $this->SearchuserID($recordData->email);
-		$query = "INSERT INFO Record VALUES ('$recordData->useData', '$recordData->timeSlot', 
-				'$id', '$recordData->roomID', '$recordData->member1', 
-				'$recordData->member2', '$recordData->member3', '$recordData->member4'";
+		$id = $this->SearchuserID($record->email);
+		$query = "INSERT INTO Record VALUES ('$record->date', '$record->time', 
+				'$id', '$record->room', '$record->member1', 
+				'$record->member2', '$record->member3', '$record->member4'";
+
+		$result = mysqli_query($this->conn, $query);
+		if ($result === false) {
+			die("ERROR: MySQL Insert");
+		}
+	}
+
+	function deleteReocrd($record)
+	{
+		$id = $this->SearchuserID($record->email);
+		$query = "DELETE FROM Record WHERE roomID='$record->room' and timeSlot='$record->time'";
 
 		$result = mysqli_query($this->conn, $query);
 		if ($result === false) {
@@ -78,12 +89,23 @@ class DBController
 
 	function SearchuserID($email)
 	{
-		$query = "select id from `USERS` where email='$email'";
+		$query = "SELECT id FROM `USERS` WHERE email='$email'";
 		if ($result = mysqli_query($this->conn, $query)) {
 			$row = mysqli_fetch_row($result);
 			$id = $row[0];
 		} else die("Error:" . mysqli_error($this->conn));
 
 		return $id;
+	}
+
+	# 查詢 Room 什麼時間被使用
+	function SearchRoomTime($date)
+	{
+		//它會列出某日期(date) 的 room, time
+		$query = "SELECT roomID, timeSlot FROM Record WHERE useDate='$date'";  
+		if ($result = mysqli_query($this->conn, $query)) {
+			$row = mysqli_fetch_all($result);
+		} else die("Error:" . mysqli_error($this->con));
+		return $row;
 	}
 }

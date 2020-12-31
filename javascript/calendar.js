@@ -10,29 +10,26 @@ let monthAndYear = document.getElementById("monthAndYear");
 showCalendar(currentMonth, currentYear);
 
 function next() {
-    if(currentMonth===11){
-        currentYear = currentYear+1;
-    }
-    else{
+    if (currentMonth === 11) {
+        currentYear = currentYear + 1;
+    } else {
         currentYear = currentYear;
     }
-    
+
     currentMonth = (currentMonth + 1) % 12;
     showCalendar(currentMonth, currentYear);
 }
 
 function previous() {
-    if(currentMonth===0){
-        currentYear = currentYear-1;
-    }
-    else{
+    if (currentMonth === 0) {
+        currentYear = currentYear - 1;
+    } else {
         currentYear = currentYear;
     }
-    if(currentMonth===0){
+    if (currentMonth === 0) {
         currentMonth = 11;
-    }
-    else{
-        currentMonth = currentMonth-1;
+    } else {
+        currentMonth = currentMonth - 1;
     }
     showCalendar(currentMonth, currentYear);
 }
@@ -71,17 +68,14 @@ function showCalendar(month, year) {
                 let cellText = document.createTextNode("");
                 cell.appendChild(cellText);
                 row.appendChild(cell);
-            }
-            else if (date > daysInMonth) {
+            } else if (date > daysInMonth) {
                 break;
-            }
-
-            else {
+            } else {
                 let cell = document.createElement("td");
                 let cellText = document.createTextNode(date);
-               /*if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                    cell.classList.add("bg-info");
-                }*/ // color today's date
+                /*if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+                     cell.classList.add("bg-info");
+                 }*/ // color today's date
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 date++;
@@ -92,33 +86,37 @@ function showCalendar(month, year) {
 
         tbl.appendChild(row); // appending each row into calendar body.
     }
-    
+
     //點擊顯示日期
     var table = document.getElementById("calendar");
-    
+
 
     if (table != null) {
         for (var i = 1; i < table.rows.length; i++) {
-            for (var j = 0; j < table.rows[i].cells.length; j++){
-                table.rows[i].cells[j].onclick = function(){
+            for (var j = 0; j < table.rows[i].cells.length; j++) {
+                table.rows[i].cells[j].onclick = function () {
                     var window_text = "The date you choose is ";
-                    var date_text="";
-                    date_text+=months[month];
-                    date_text+=" ";
-                    date_text+=this.innerHTML;
-                    date_text+=" ";
-                    date_text+= String(currentYear);
-                    window_text+=date_text;
+                    var date_text = "";
+                    date_text += months[month];
+                    date_text += " ";
+                    date_text += this.innerHTML;
+                    date_text += " ";
+                    date_text += String(currentYear);
+                    // date_text += String(currentYear);
+                    // date_text += "/";
+                    // date_text += month;
+                    // date_text += "/";
+                    // date_text += this.innerHTML;
+                    // window_text += date_text;
                     var w_confirm = window.confirm(window_text);
-                    if(w_confirm){
+                    if (w_confirm) {
                         var selected_date = date_text;
-                        sessionStorage.setItem("selected_date",selected_date);
-                        window.location.href="availability.php"
-                    }                
+                        sessionStorage.setItem("selected_date", selected_date);
+                        window.location.href = "availability.php";
+                    }
                 };
             }
         }
     }
-    
-}
 
+}

@@ -18,13 +18,14 @@ function sameCol() {
     var k = 0;
     if (col_array.length == 0) {
         return true;
-    }
-    else {
+    } else {
         k = col_array[0];
     }
 
     for (var i = 0; i < col_array.length; i++) {
-        if (col_array[i] != k) { return false; }
+        if (col_array[i] != k) {
+            return false;
+        }
     }
 
     return true;
@@ -39,8 +40,11 @@ function cellBGColor(tableCell) {
     }
 
     //選取&取消選取格子   
-    if (tableCell.className == "on") { tableCell.className = "off"; }
-    else { tableCell.className = "on"; }
+    if (tableCell.className == "on") {
+        tableCell.className = "off";
+    } else {
+        tableCell.className = "on";
+    }
 
 }
 
@@ -100,8 +104,7 @@ function confirmTimeSlot() {
             if (i != time_arr.length - 1) {
                 modal_time += time_arr[i];
                 modal_time += ", "
-            }
-            else {
+            } else {
                 modal_time += time_arr[i];
             }
         }
@@ -111,15 +114,40 @@ function confirmTimeSlot() {
             $('#myModal').modal('toggle');
             document.getElementById("room").innerHTML = tmpRoom;
             document.getElementById("time").innerHTML = modal_time;
-        }
-        else {
+        } else {
             clearSelected();
             alert("Please try again.\n");
         }
-    }
-
-    else {
+    } else {
         alert("You can only select one room per reservation.\nPlease try again.\n");
         clearSelected();
     }
+}
+
+function getTimeSlotArray() {
+    var time_arr = [];
+    if (sameCol()) {
+        for (var i = 1; i < table.rows.length; i++) {
+            for (var j = 1; j < table.rows[i].cells.length; j++) {
+                if (table.rows[i].cells[j].className == "on") {
+                    time_arr.push(i - 1);
+                }
+            }
+        }
+    }
+    return time_arr;
+}
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
 }
