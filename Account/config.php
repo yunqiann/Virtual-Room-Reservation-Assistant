@@ -56,24 +56,22 @@ class DBController
 	function insertReocrd($record)
 	{
 		$id = $this->SearchuserID($record->email);
-		$query = "INSERT INTO Record VALUES ('$record->date', '$record->time', 
-				'$id', '$record->room', '$record->member1', 
-				'$record->member2', '$record->member3', '$record->member4'";
-
+		$query = "INSERT INTO Record VALUES ('$record->date', '$record->time',
+				'$id', '$record->room', '$record->member1',
+				'$record->member2', '$record->member3', '$record->member4')";
 		$result = mysqli_query($this->conn, $query);
 		if ($result === false) {
 			die("ERROR: MySQL Insert");
 		}
+		return $id;
 	}
 
 	function deleteReocrd($record)
 	{
-		$id = $this->SearchuserID($record->email);
 		$query = "DELETE FROM Record WHERE roomID='$record->room' and timeSlot='$record->time'";
-
 		$result = mysqli_query($this->conn, $query);
 		if ($result === false) {
-			die("ERROR: MySQL Insert");
+			die("ERROR: MySQL Delete");
 		}
 	}
 
@@ -102,7 +100,7 @@ class DBController
 	function SearchRoomTime($date)
 	{
 		//它會列出某日期(date) 的 room, time
-		$query = "SELECT roomID, timeSlot FROM Record WHERE useDate='$date'";  
+		$query = "SELECT roomID, timeSlot FROM Record WHERE useDate='$date'";
 		if ($result = mysqli_query($this->conn, $query)) {
 			$row = mysqli_fetch_all($result);
 		} else die("Error:" . mysqli_error($this->con));

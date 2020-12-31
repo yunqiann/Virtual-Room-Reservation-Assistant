@@ -1,5 +1,6 @@
 <?php
 require_once "Account/google_auth.php";
+require_once "Account/config.php";
 ?>
 
 <!-- <!DOCTYPE html> -->
@@ -116,10 +117,11 @@ require_once "Account/google_auth.php";
                         var result = "Date: " + date + ", Time: " + time + ", Room: " + room + ", Email: " + email +
                           ", Member1: " + member1 + ", Member2: " + member2 + ", Member3: " + member3 +
                           ", Member4: " + member4;
-                        var sql = "INSERT INTO Record VALUES ('" + date + "','" + time + "','" + email + "','" + room +
-                          "','" + member1 + "','" + member2 + "','" + member3 + "','" + member4 + "')";
                         console.log(result);
-                        console.log(sql);
+                        window.location = "http://localhost/reservation_record.php";
+                        // var sql = "INSERT INTO Record VALUES ('" + date + "','" + time + "','" + email + "','" + room +
+                        // "','" + member1 + "','" + member2 + "','" + member3 + "','" + member4 + "')";
+                        // console.log(sql);
                         // $("#result").html(result);
                       },
                       error: function(xhr) {
@@ -146,7 +148,7 @@ require_once "Account/google_auth.php";
         </thead>
         <tbody>
           <tr>
-            <th value=1>08:00-09:00</th>
+            <th value>08:00-09:00</th>
             <td></td>
             <td></td>
             <td></td>

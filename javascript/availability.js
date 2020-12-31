@@ -3,7 +3,7 @@ var selected_date = sessionStorage.getItem("selected_date");
 
 document.getElementById("selected_date").innerHTML = selected_date;
 
-alert(color);//不知道為什麼只要改color變數名稱這個功能就會爆掉
+// alert(color);//不知道為什麼只要改color變數名稱這個功能就會爆掉
 
 
 function sameCol() {
