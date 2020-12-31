@@ -89,8 +89,6 @@ function showCalendar(month, year) {
 
     //點擊顯示日期
     var table = document.getElementById("calendar");
-
-
     if (table != null) {
         for (var i = 1; i < table.rows.length; i++) {
             for (var j = 0; j < table.rows[i].cells.length; j++) {

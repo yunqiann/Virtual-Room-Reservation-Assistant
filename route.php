@@ -27,29 +27,33 @@ $member4 = isset($_POST['member4']) ? $_POST['member4'] : '';
 //     ];
 //     $objDBController->insertReocrd($record);
 // }
-// $date = "INSERT INTO Record VALUES '$date', '$time', 'gggg', '$room', '$member1', '$member2', '$member3', '$member4')";
+
 // unset($objDBController);
 
-// $record = array(
-//     'date' => $date,
-//     'time' => $time,
-//     'room' => $room,
-//     'email' => $email,
-//     'member1' => $member1,
-//     'member2' => $member2,
-//     'member3' => $member3,
-//     'member4' => $member4
-// );
-$record = [
+$record = array(
     'date' => $date,
-    'time' => $time[$i],
-    'email' => $email,
+    'time' => $time,
     'room' => $room,
+    'email' => $email,
     'member1' => $member1,
     'member2' => $member2,
     'member3' => $member3,
     'member4' => $member4
-];
+);
+$date = "INSERT INTO Record VALUES '$record[0]', '$record[1]', '$record[2]', '$record[3]', '$record[4]', '$record[5]', '$record[6]', '$record[7]')";
+// $date = "INSERT INTO Record VALUES '$date', '$time', '$email', '$room', '$member1', '$member2', '$member3', '$member4')";
+// $record = [
+//     'date' => $date,
+//     'time' => $time[$i],
+//     'email' => $email,
+//     'room' => $room,
+//     'member1' => $member1,
+//     'member2' => $member2,
+//     'member3' => $member3,
+//     'member4' => $member4
+// ];
+
+
 
 echo json_encode($record);
 // header("Location: http://localhost");

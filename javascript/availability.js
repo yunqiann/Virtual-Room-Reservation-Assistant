@@ -1,8 +1,10 @@
 var table = document.getElementById("Availability");
 var selected_date = sessionStorage.getItem("selected_date");
-//console.log(selected_date);
 
 document.getElementById("selected_date").innerHTML = selected_date;
+
+alert(color);//不知道為什麼只要改color變數名稱這個功能就會爆掉
+
 
 function sameCol() {
 
@@ -50,6 +52,7 @@ function cellBGColor(tableCell) {
 
 
 if (table != null) {
+
     for (var i = 1; i < table.rows.length; i++) {
         for (var j = 1; j < table.rows[i].cells.length; j++) {
             table.rows[i].cells[j].onclick = function () {
@@ -73,14 +76,15 @@ function clearSelected() {
 }
 
 
-
 //確認選取的時段
 function confirmTimeSlot() {
-    var window_txt = "Please confirm the selected time slots and room.\n"
+    var window_txt = "Please confirm the selected time slots and room.\n";
+    var dateStr = "Date: ";
     var timeStr = "Time: \n";
     var roomStr = "Room: ";
     var tmpRoom = "";
     var time_arr = [];
+    var tmp_date=document.getElementById("selected_date").innerText;
 
     if (sameCol()) {
         for (var i = 1; i < table.rows.length; i++) {
@@ -95,6 +99,9 @@ function confirmTimeSlot() {
         }
         roomStr += tmpRoom;
         roomStr += "\n"
+        window_txt += dateStr;
+        window_txt += tmp_date;
+        window_txt += "\n"
         window_txt += roomStr;
         window_txt += timeStr;
         var cf = window.confirm(window_txt);
@@ -111,6 +118,7 @@ function confirmTimeSlot() {
 
         //確定->彈出型視窗(輸入詳細資訊)
         if (cf == true) {
+            
             $('#myModal').modal('toggle');
             document.getElementById("room").innerHTML = tmpRoom;
             document.getElementById("time").innerHTML = modal_time;
