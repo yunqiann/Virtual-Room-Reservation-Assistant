@@ -5,7 +5,6 @@ document.getElementById("selected_date").innerHTML = selected_date;
 
 // alert(color);//不知道為什麼只要改color變數名稱這個功能就會爆掉
 
-
 function sameCol() {
 
     var col_array = [];
@@ -117,8 +116,7 @@ function confirmTimeSlot() {
         }
 
         //確定->彈出型視窗(輸入詳細資訊)
-        if (cf == true) {
-            
+        if (cf == true) {  
             $('#myModal').modal('toggle');
             document.getElementById("room").innerHTML = tmpRoom;
             document.getElementById("time").innerHTML = modal_time;
