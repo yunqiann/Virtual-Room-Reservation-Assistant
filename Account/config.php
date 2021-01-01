@@ -79,7 +79,7 @@ class DBController
 	function SearchRecord($email)
 	{
 		$id = $this->SearchuserID($email);
-		$query = "SELECT DATE_FORMAT(useDate, '%Y/%m/%d'), timeSlot, roomID, member1, member2, member3, member4 FROM Record where userID='$id'";
+		$query = "SELECT DATE_FORMAT(useDate, '%Y/%m/%d'), timeSlot, roomID, member1, member2, member3, member4 FROM Record where userID='$id' or member1='$email' or member2='$email' or member3='$email' or member4='$email'";
 		if ($result = mysqli_query($this->conn, $query)) {
 			$row = mysqli_fetch_all($result);
 		} else die("Error:" . mysqli_error($this->con));

@@ -110,10 +110,10 @@ if ($selectDateStr < $today) {
                         time: getTimeSlotArray(),
                         room: $("#room").html(),
                         email: $("#host-email").val(),
-                        member1: $("#member-email1").html(),
-                        member2: $("#member-email2").html(),
-                        member3: $("#member-email3").html(),
-                        member4: $("#member-email4").html()
+                        member1: $("#member-email1").val(),
+                        member2: $("#member-email2").val(),
+                        member3: $("#member-email3").val(),
+                        member4: $("#member-email4").val()
                       },
                       success: function(data) {
                         console.log("ok");
