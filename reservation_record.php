@@ -1,6 +1,11 @@
 <?php
 require_once "Account/google_auth.php";
 require_once "Account/config.php";
+
+if (isset($authUrl)) {
+  header("Location: index.php");
+}
+
 ?>
 <!-- <!DOCTYPE html> -->
 <!-- <html lang="en"> -->

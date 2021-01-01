@@ -2,9 +2,19 @@
 require_once "Account/google_auth.php";
 require_once "Account/config.php";
 
+// $selectDateStr = '';
+// if ($selectDateStr = $_POST['selectDate']) {
+//   date_default_timezone_set('Asia/Taipei');
+//   // $selectDateStr = $_POST['selectDate'];
+//   $selectDate = date_create($selectDateStr);
+//   $today = date("Y-m-d");
+//   if ($selectDateStr < $today) {
+//     header("Location: index.php");
+//   }
+// }
 
 date_default_timezone_set('Asia/Taipei');
-$selectDateStr = $_POST['selectDate'] ? $_POST['selectDate'] : "";
+$selectDateStr = $_POST['selectDate'] ? $_POST['selectDate'] : '';
 $selectDate = date_create($selectDateStr);
 $today = date("Y-m-d");
 
@@ -40,9 +50,14 @@ if ($selectDateStr < $today) {
           <li class="nav-item">
             <a class="nav-link" href="availability.php">Availability</a>
           </li>
-          <li class="nav-item">
+          <?php if (!isset($authUrl)) : ?>
+            <li class="nav-item">
+              <a class="nav-link" href="reservation_record.php">Reservation Record</a>
+            </li>
+          <?php endif ?>
+          <!-- <li class="nav-item">
             <a class="nav-link" href="reservation_record.php">Reservation Record</a>
-          </li>
+          </li> -->
         </ul>
         <span class="navbar-text">
           <?php if (isset($authUrl)) : ?>
@@ -55,7 +70,7 @@ if ($selectDateStr < $today) {
     </nav>
     <!-- <h4>The date you choose is</h4> -->
     <!-- <p id="selected_date"></p> -->
-    <div><?php echo ("$selectDateStr"); ?></div>
+    <h2><?php echo ("$selectDateStr"); ?></h2>
     <div class="col-sm-4 col-md-7 col-lg-4 mt-5">
       <div id="myModal" class="modal fade">
         <div class="modal-dialog" role="document">
@@ -181,7 +196,7 @@ if ($selectDateStr < $today) {
                 $use = $objDBController->SearchRoomTime($recordData);
                 // $ues = gettype($use);
                 if ($use === '1') { ?>
-                  <td class=not_available></td>
+                  <td class="not_available"></td>
                 <?php } else { ?>
                   <td></td>
               <?php }

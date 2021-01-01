@@ -32,9 +32,11 @@
           <li class="nav-item">
             <a class="nav-link" href="availability.php">Availability</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="reservation_record.php">Reservation Record</a>
-          </li>
+          <?php if (!isset($authUrl)) : ?>
+            <li class="nav-item">
+              <a class="nav-link" href="reservation_record.php">Reservation Record</a>
+            </li>
+          <?php endif ?>
         </ul>
         <span class="navbar-text">
           <?php if (isset($authUrl)) : ?>
