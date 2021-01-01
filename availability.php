@@ -9,7 +9,7 @@ $selectDate = date_create($selectDateStr);
 $today = date("Y-m-d");
 
 if ($selectDateStr < $today) {
-  header("Location: http://localhost/index.php");
+  header("Location: index.php");
 }
 ?>
 
@@ -261,8 +261,12 @@ if ($selectDateStr < $today) {
     </div>
   </div>
   <!-- <div id="result"></div> -->
-  <button id="submit" type="button" class="btn btn-primary" onclick="confirmTimeSlot()">Sumbit</button>
-  <button type="button" class="btn btn-secondary" onclick="clearSelected()">Clear</button>
+  <?php if (isset($authUrl)) : ?>
+    <h1>After logging in, you can reserve a room.</h1>
+  <?php else : ?>
+    <button id="submit" type="button" class="btn btn-primary" onclick="confirmTimeSlot()">Sumbit</button>
+    <button type="button" class="btn btn-secondary" onclick="clearSelected()">Clear</button>
+  <?php endif ?>
 </body>
 
 </html>

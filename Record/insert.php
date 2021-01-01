@@ -121,7 +121,8 @@ $mail->Subject = "Virtual Room Reservation System Notification";     //信件主
 $mail->WordWrap = 70;
 $time_mailbody=timeToStr($time);
 $tmp_url = googleCalendarURL($date, $time_mailbody, $room);
-$mail->Body ="<html><span>This is a meeting Reminder.</span><br><span>Date: $date</span><br><span>Time: $time_mailbody</span><br><span>Room: $room</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br></span><span>$tmp_url</span><br><a href=\"https://calendar.google.com/calendar/u/0/r/eventedit?text=%0DMeeting&dates=20210101T000000/20210101T010000&details=none&location=B&trp=false&sf=true\">Add to calendar</a></html>";    
+// $mail->Body ="<html><span>This is a meeting Reminder.</span><br><span>Date: $date</span><br><span>Time: $time_mailbody</span><br><span>Room: $room</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br></span><span>$tmp_url</span><br><a href=\"https://calendar.google.com/calendar/u/0/r/eventedit?text=%0DMeeting&dates=20210101T000000/20210101T010000&details=none&location=B&trp=false&sf=true\">Add to calendar</a></html>";    
+$mail->Body ="<html><span>This is a meeting Reminder.</span><br><span>Date: $date</span><br><span>Time: $time_mailbody</span><br><span>Room: $room</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br></span><span>$tmp_url</span><br><a href='https://calendar.google.com/calendar/u/0/r/eventedit?text=%0DMeeting&dates=20210101T000000/20210101T010000&details=none&location=B&trp=false&sf=true'>Add to calendar</a></html>";    
 $mail->AddAddress($email);   //收件者信箱
 $mail->AddAddress($member1);
 $mail->AddAddress($member2);

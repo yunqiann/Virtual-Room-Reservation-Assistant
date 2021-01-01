@@ -55,10 +55,13 @@
           <a class='login' href='<?php echo $authUrl; ?>'><img class='login' src="images/sign-in-with-google.png" width="250px" size="54px" /></a>
           <!-- Show User Profile otherwise-->
         <?php else : ?>
-          <img class="circle-image" src="<?php echo $userData["picture"]; ?>" width="150px" size="150px" /><br />
-          <p class="welcome">Welcome <a href="<?php echo $userData["link"]; ?>" /><?php echo $userData["name"]; ?></a>.</p>
-          <p class="oauthemail"><?php echo $userData["email"]; ?></p>
-          <div class='logout'><a href='./logout.php'>Logout</a></div>
+          <br><br>
+          <img class="circle-image" src="<?php echo $userData["picture"]; ?>" width="200px" size="200px" /><br />
+          <br><p class="welcome">Welcome</p><br>
+          <p class="oauthemail"><?php echo $userData["name"]; ?> </p>
+          <p class="oauthemail"><?php echo $userData["email"];?></p>
+          <?php header("Location: index.php"); ?>
+          <!-- <div class='logout'><a href='./logout.php'>Logout</a></div> -->
         <?php endif ?>
       </div>
     </div>
