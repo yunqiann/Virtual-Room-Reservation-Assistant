@@ -29,7 +29,6 @@ if ($selectDateStr < $today) {
 </head>
 
 <body>
-  <div><?php echo ("$selectDateStr and  $today"); ?></div>
   <div class="container-lg">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="index.php">Virtual Room Reservation Assistant</a>
@@ -56,6 +55,7 @@ if ($selectDateStr < $today) {
     </nav>
     <!-- <h4>The date you choose is</h4> -->
     <!-- <p id="selected_date"></p> -->
+    <div><?php echo ("$selectDateStr"); ?></div>
     <div class="col-sm-4 col-md-7 col-lg-4 mt-5">
       <div id="myModal" class="modal fade">
         <div class="modal-dialog" role="document">
