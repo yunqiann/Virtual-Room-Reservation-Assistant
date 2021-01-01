@@ -34,97 +34,113 @@ for ($i = 0; $i < count($time); $i++) {
     $objDBController->insertReocrd($record);
 }
 
-// function timeToStr($time)
-// {
-//     $timeStr = "";
-//     foreach ($time as $t) {
-//         if ($t == 0) {
-//             $timeStr .= "08:00-09:00\n";
-//         } else if ($t == 1) {
-//             $timeStr .= "09:00-10:00\n";
-//         } else if ($t == 2) {
-//             $timeStr .= "10:00-11:00\n";
-//         } else if ($t == 3) {
-//             $timeStr .= "11:00-12:00\n";
-//         } else if ($t == 4) {
-//             $timeStr .= "12:00-13:00\n";
-//         } else if ($t == 5) {
-//             $timeStr .= "13:00-14:00\n";
-//         } else if ($t == 6) {
-//             $timeStr .= "14:00-15:00\n";
-//         } else if ($t == 7) {
-//             $timeStr .= "15:00-16:00\n";
-//         } else if ($t == 8) {
-//             $timeStr .= "16:00-17:00\n";
-//         }
-//     }
-//     return $timeStr;
-// }
+function timeToStr($time)
+{
+    $timeStr = "";
+    foreach ($time as $t) {
+        if ($t == 0) {
+            $timeStr .= "08:00-09:00\n";
+        } else if ($t == 1) {
+            $timeStr .= "09:00-10:00\n";
+        } else if ($t == 2) {
+            $timeStr .= "10:00-11:00\n";
+        } else if ($t == 3) {
+            $timeStr .= "11:00-12:00\n";
+        } else if ($t == 4) {
+            $timeStr .= "12:00-13:00\n";
+        } else if ($t == 5) {
+            $timeStr .= "13:00-14:00\n";
+        } else if ($t == 6) {
+            $timeStr .= "14:00-15:00\n";
+        } else if ($t == 7) {
+            $timeStr .= "15:00-16:00\n";
+        } else if ($t == 8) {
+            $timeStr .= "16:00-17:00\n";
+        }
+    }
+    return $timeStr;
+}
 
-// function googleCalendarURL($date, $timeStr, $room)
-// {
+function emailBody($date, $time, $room)
+{
+    $m_time=timeToStr($time);
+    $m_body="<html><span>This is a meeting Reminder.</span><br><span>Date: $date</span><br><span>Time: $m_time</span><br><span>Room: $room</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br><br>";
+    $timeStrArr = array(
+        "08:00", "09:00", "10:00", "11:00", "12:00",
+        "13:00", "14:00", "15:00", "16:00", "17:00"
+    );
+    $dateArr = str_split($date);
+    $date_append = "";
+    foreach ($dateArr as $char) {
+        if ($char != '-') {
+            $date_append .= $char;
+        }
+    }
+    $date_append .= 'T';
+    
+    $timeStr=array("080000","090000","100000","110000","120000","130000","140000","150000","160000","170000");
+    
+    $start_time = "";
+    $end_time = "";
+    foreach ($time as $t) {      
+            
+            //compute start_time end_time
+            $start_time=$timeStr[$t];
+            $end_time=$timeStr[$t+1];
+            $start_time_display=$timeStrArr[$t];
+            $end_time_display=$timeStrArr[$t+1];
+            //url processing
+            $m_body.="<span>$start_time_display</span>-<span>$end_time_display  </span>";
+            $template_url = "<a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text=Meeting&dates=";
+            $roomStr = "&location=";
+            $roomStr .= $room;
+            $template_url .= $date_append;
+            $template_url .= $start_time;
+            $template_url .= "/";
+            $template_url .= $date_append;
+            $template_url .= $end_time;
+            $template_url .= "&details=none";
+            $template_url .= $roomStr;
+            $template_url .= "&trp=false";
+            $template_url .= "&sf=true\">Add to Calendar</a>";
+            $m_body.=$template_url;
+            $m_body.="<br>";
 
-//     $template_url = "\"http://www.google.com/calendar/event?action=TEMPLATE&text=Meeting&dates=";
-//     $dateArr = str_split($date);
-//     $date_append = "";
-//     foreach ($dateArr as $char) {
-//         if ($char != '-') {
-//             $date_append .= $char;
-//         }
-//     }
-//     $date_append .= 'T';
-//     $start_time = "000000";
-//     $timeArr = str_split($timeStr);
+    }
+    $m_body.="</html>";
 
-//     //$start_time.="00";
+    return $m_body;
+}
 
-//     $end_time = "000000";
 
-//     //$end_time.="00";
-
-//     $roomStr = "&location=";
-//     $roomStr .= $room;
-
-//     $template_url .= $date_append;
-//     $template_url .= $start_time;
-//     $template_url .= "/";
-//     $template_url .= $date_append;
-//     $template_url .= $end_time;
-//     $template_url .= "&details=none";
-//     $template_url .= $roomStr;
-//     $template_url .= "&trp=false";
-//     $template_url .= "&sf=true\"";
-
-//     return $template_url;
-// }
-
-// $mail = new PHPMailer();
-// $mail->SMTPSecure = "ssl";
-// $mail->Host = "smtp.gmail.com";
-// $mail->Port = 465;
-// $mail->CharSet = "utf-8";    //信件編碼
-// $mail->Username = "seproject1804@gmail.com";        //帳號，例:example@gmail.com
-// $mail->Password = "kthjigwbhjcnefps";        //密碼
-// $mail->IsSMTP();
-// $mail->SMTPAuth = true;
-// $mail->SMTPDebug  = 1;
-// $mail->Encoding = "base64";
-// $mail->IsHTML(true);     //內容HTML格式
-// $mail->From = "seproject1804@gmail.com";        //寄件者信箱
-// $mail->FromName = "Virtual Room Reservation System";    //寄信者姓名
-// $mail->Subject = "Virtual Room Reservation System Notification";     //信件主旨
-// $mail->WordWrap = 70;
-// $time_mailbody = timeToStr($time);
-// $tmp_url = googleCalendarURL($date, $time_mailbody, $room);
-// $mail->Body = "<html><span>This is a meeting Reminder.</span><br><span>Date: $date</span><br><span>Time: $time_mailbody</span><br><span>Room: $room</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br></span><span>$tmp_url</span><br><a href=\"https://calendar.google.com/calendar/u/0/r/eventedit?text=%0DMeeting&dates=20210101T000000/20210101T010000&details=none&location=B&trp=false&sf=true\">Add to calendar</a></html>";
-// $mail->AddAddress($email);   //收件者信箱
-// $mail->AddAddress($member1);
-// $mail->AddAddress($member2);
-// $mail->AddAddress($member3);
-// $mail->AddAddress($member4);
-// if (!$mail->Send()) {
-//     echo "Mailer Error: " . $mail->ErrorInfo;
-// }
+$mail = new PHPMailer();
+$mail->SMTPSecure = "ssl";
+$mail->Host = "smtp.gmail.com";
+$mail->Port = 465;
+$mail->CharSet = "utf-8";    //信件編碼
+$mail->Username = "seproject1804@gmail.com";        //帳號，例:example@gmail.com
+$mail->Password = "kthjigwbhjcnefps";        //密碼
+$mail->IsSMTP();
+$mail->SMTPAuth = true;
+$mail->SMTPDebug  = 1;
+$mail->Encoding = "base64";
+$mail->IsHTML(true);     //內容HTML格式
+$mail->From = "seproject1804@gmail.com";        //寄件者信箱
+$mail->FromName = "Virtual Room Reservation System";    //寄信者姓名
+$mail->Subject = "Virtual Room Reservation System Notification";     //信件主旨
+$mail->WordWrap = 70;
+//$time_mailbody = timeToStr($time);
+//$tmp_url = googleCalendarURL($date, $time, $room);
+//$mail->Body = "<html><span>This is a meeting Reminder.</span><br><span>Date: $date</span><br><span>Time: $time_mailbody</span><br><span>Room: $room</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br></span><span>$tmp_url</span><br></html>";
+$mail->Body=emailBody($date,$time,$room);
+$mail->AddAddress($email);   //收件者信箱
+$mail->AddAddress($member1);
+$mail->AddAddress($member2);
+$mail->AddAddress($member3);
+$mail->AddAddress($member4);
+if (!$mail->Send()) {
+    echo "Mailer Error: " . $mail->ErrorInfo;
+}
 unset($objDBController);
 
 echo json_encode($record);
