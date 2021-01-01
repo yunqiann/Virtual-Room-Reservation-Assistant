@@ -63,8 +63,8 @@ function timeToStr($time)
 
 function emailBody($date, $time, $room)
 {
-    $m_time=timeToStr($time);
-    $m_body="<html><span>This is a meeting Reminder.</span><br><span>Date: $date</span><br><span>Time: $m_time</span><br><span>Room: $room</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br><br>";
+    $m_time = timeToStr($time);
+    $m_body = "<html><span>This is a meeting Reminder.</span><br><span>Date: $date</span><br><span>Time: $m_time</span><br><span>Room: $room</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br><br>";
     $timeStrArr = array(
         "08:00", "09:00", "10:00", "11:00", "12:00",
         "13:00", "14:00", "15:00", "16:00", "17:00"
@@ -77,37 +77,36 @@ function emailBody($date, $time, $room)
         }
     }
     $date_append .= 'T';
-    
-    $timeStr=array("080000","090000","100000","110000","120000","130000","140000","150000","160000","170000");
-    
+
+    $timeStr = array("080000", "090000", "100000", "110000", "120000", "130000", "140000", "150000", "160000", "170000");
+
     $start_time = "";
     $end_time = "";
-    foreach ($time as $t) {      
-            
-            //compute start_time end_time
-            $start_time=$timeStr[$t];
-            $end_time=$timeStr[$t+1];
-            $start_time_display=$timeStrArr[$t];
-            $end_time_display=$timeStrArr[$t+1];
-            //url processing
-            $m_body.="<span>$start_time_display</span>-<span>$end_time_display  </span>";
-            $template_url = "<a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text=Meeting&dates=";
-            $roomStr = "&location=";
-            $roomStr .= $room;
-            $template_url .= $date_append;
-            $template_url .= $start_time;
-            $template_url .= "/";
-            $template_url .= $date_append;
-            $template_url .= $end_time;
-            $template_url .= "&details=none";
-            $template_url .= $roomStr;
-            $template_url .= "&trp=false";
-            $template_url .= "&sf=true\">Add to Calendar</a>";
-            $m_body.=$template_url;
-            $m_body.="<br>";
+    foreach ($time as $t) {
 
+        //compute start_time end_time
+        $start_time = $timeStr[$t];
+        $end_time = $timeStr[$t + 1];
+        $start_time_display = $timeStrArr[$t];
+        $end_time_display = $timeStrArr[$t + 1];
+        //url processing
+        $m_body .= "<span>$start_time_display</span>-<span>$end_time_display  </span>";
+        $template_url = "<a href=\"http://www.google.com/calendar/event?action=TEMPLATE&text=Meeting&dates=";
+        $roomStr = "&location=";
+        $roomStr .= $room;
+        $template_url .= $date_append;
+        $template_url .= $start_time;
+        $template_url .= "/";
+        $template_url .= $date_append;
+        $template_url .= $end_time;
+        $template_url .= "&details=none";
+        $template_url .= $roomStr;
+        $template_url .= "&trp=false";
+        $template_url .= "&sf=true\">Add to Calendar</a>";
+        $m_body .= $template_url;
+        $m_body .= "<br>";
     }
-    $m_body.="</html>";
+    $m_body .= "</html>";
 
     return $m_body;
 }
@@ -132,15 +131,23 @@ $mail->WordWrap = 70;
 //$time_mailbody = timeToStr($time);
 //$tmp_url = googleCalendarURL($date, $time, $room);
 //$mail->Body = "<html><span>This is a meeting Reminder.</span><br><span>Date: $date</span><br><span>Time: $time_mailbody</span><br><span>Room: $room</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br></span><span>$tmp_url</span><br></html>";
-$mail->Body=emailBody($date,$time,$room);
-$mail->AddAddress($email);   //收件者信箱
-$mail->AddAddress($member1);
-$mail->AddAddress($member2);
-$mail->AddAddress($member3);
-$mail->AddAddress($member4);
+$mail->Body = emailBody($date, $time, $room);
+if (!isset($member1)) {
+    $mail->AddAddress($member1);
+}
+if (!isset($member2)) {
+    $mail->AddAddress($member2);
+}
+if (!isset($member3)) {
+    $mail->AddAddress($member3);
+}
+if (!isset($member4)) {
+    $mail->AddAddress($member4);
+}
 if (!$mail->Send()) {
     echo "Mailer Error: " . $mail->ErrorInfo;
 }
 unset($objDBController);
+unset($mail);
 
 echo json_encode($record);

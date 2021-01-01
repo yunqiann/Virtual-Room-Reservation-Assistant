@@ -30,9 +30,9 @@ if (isset($authUrl)) {
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="availability.php">Availability</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="reservation_record.php">Reservation Record</a>
           </li>

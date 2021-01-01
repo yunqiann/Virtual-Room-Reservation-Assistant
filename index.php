@@ -29,9 +29,9 @@
           <!-- <li class="nav-item active">
             <a class="nav-link" href="login.php">Login<span class="sr-only">(current)</span></a>
           </li> -->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="availability.php">Availability</a>
-          </li>
+          </li> -->
           <?php if (!isset($authUrl)) : ?>
             <li class="nav-item">
               <a class="nav-link" href="reservation_record.php">Reservation Record</a>
