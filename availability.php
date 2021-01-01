@@ -1,6 +1,16 @@
 <?php
 require_once "Account/google_auth.php";
 require_once "Account/config.php";
+
+
+date_default_timezone_set('Asia/Taipei');
+$selectDateStr = $_POST['selectDate'] ? $_POST['selectDate'] : "";
+$selectDate = date_create($selectDateStr);
+$today = date("Y-m-d");
+
+if ($selectDateStr < $today) {
+  header("Location: http://localhost/index.php");
+}
 ?>
 
 <!-- <!DOCTYPE html> -->
@@ -19,6 +29,7 @@ require_once "Account/config.php";
 </head>
 
 <body>
+  <div><?php echo ("$selectDateStr and  $today"); ?></div>
   <div class="container-lg">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="index.php">Virtual Room Reservation Assistant</a>
@@ -147,7 +158,40 @@ require_once "Account/config.php";
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <?php
+          $timeStr = array(
+            "08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00",
+            "13:00-14:00", "14:00-15:00", "15:00-16:00", "16:00-17:00"
+          );
+          $roomStr = array("A", "B", "C", "D");
+          $objDBController = new DBController();
+          $recordData = new stdClass();
+          $recordData->date = $selectDateStr;
+          // $recordData->date = gettype($recordData->date);
+          for ($i = 0; $i < 9; $i++) {  //Room
+            $recordData->time = $i;
+            // $recordData->time = gettype($recordData->time);
+          ?>
+            <tr>
+              <th><?php echo $timeStr[$i]; ?></th>
+              <?php
+              for ($j = 0; $j < 4; $j++) {
+                $recordData->room = $roomStr[$j];
+                // $recordData->room = gettype($recordData->room);
+                $use = $objDBController->SearchRoomTime($recordData);
+                // $ues = gettype($use);
+                if ($use === '1') { ?>
+                  <td class=not_available></td>
+                <?php } else { ?>
+                  <td></td>
+              <?php }
+              }
+              ?>
+            </tr>
+          <?php
+          }
+          ?>
+          <!-- <tr>
             <th value>08:00-09:00</th>
             <td></td>
             <td></td>
@@ -208,7 +252,7 @@ require_once "Account/config.php";
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td></td> -->
           </tr>
         </tbody>
 

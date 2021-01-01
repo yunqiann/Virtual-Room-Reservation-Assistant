@@ -73,9 +73,9 @@ function showCalendar(month, year) {
             } else {
                 let cell = document.createElement("td");
                 let cellText = document.createTextNode(date);
-                /*if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
-                     cell.classList.add("bg-info");
-                 }*/ // color today's date
+                if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+                    cell.classList.add("bg-info");
+                } // color today's date
                 cell.appendChild(cellText);
                 row.appendChild(cell);
                 date++;
@@ -93,7 +93,7 @@ function showCalendar(month, year) {
         for (var i = 1; i < table.rows.length; i++) {
             for (var j = 0; j < table.rows[i].cells.length; j++) {
                 table.rows[i].cells[j].onclick = function () {
-                    var window_text = "The date you choose is ";
+                    // var window_text = "The date you choose is ";
                     var date_text = "";
                     date_text += months[month];
                     date_text += " ";
@@ -106,15 +106,31 @@ function showCalendar(month, year) {
                     // date_text += "/";
                     // date_text += this.innerHTML;
                     // window_text += date_text;
-                    var w_confirm = window.confirm(window_text);
-                    if (w_confirm) {
-                        var selected_date = date_text;
-                        sessionStorage.setItem("selected_date", selected_date);
-                        window.location.href = "availability.php";
-                    }
+                    // var w_confirm = window.confirm(window_text);
+                    // if (w_confirm) {
+                    var selected_date = date_text;
+                    sessionStorage.setItem("selected_date", selected_date);
+                    document.getElementById("selectDate").innerHTML = formatDate(selected_date);
+                    document.getElementById("selectDate").value = formatDate(selected_date);
+                    // window.location.href = "availability.php";
+                    // }
                 };
             }
         }
     }
 
+}
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    return [year, month, day].join('-');
 }

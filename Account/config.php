@@ -98,13 +98,13 @@ class DBController
 	}
 
 	# 查詢 Room 什麼時間被使用
-	function SearchRoomTime($date)
+	function SearchRoomTime($record)
 	{
-		//它會列出某日期(date) 的 room, time
-		$query = "SELECT roomID, timeSlot FROM Record WHERE useDate='$date'";
+		//查詢是否存在
+		$query = "SELECT EXISTS(SELECT * from Record WHERE useDate='$record->date' and timeSlot='$record->time' and roomID='$record->room')";
 		if ($result = mysqli_query($this->conn, $query)) {
-			$row = mysqli_fetch_all($result);
+			$useBool=  mysqli_fetch_row($result);
 		} else die("Error:" . mysqli_error($this->con));
-		return $row;
+		return $useBool[0];
 	}
 }
