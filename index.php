@@ -9,8 +9,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/myCSS.css">
+  <link rel="stylesheet" href="./css/all.css">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
@@ -29,20 +28,18 @@
           <!-- <li class="nav-item active">
             <a class="nav-link" href="login.php">Login<span class="sr-only">(current)</span></a>
           </li> -->
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="availability.php">Availability</a>
-          </li> -->
-          <?php if (!isset($authUrl)) : ?>
-            <li class="nav-item">
-              <a class="nav-link" href="reservation_record.php">Reservation Record</a>
-            </li>
-          <?php endif ?>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="reservation_record.php">Reservation Record</a>
+          </li>
         </ul>
         <span class="navbar-text">
           <?php if (isset($authUrl)) : ?>
-            <a href='./login.php'>Login</a>
+            <a href='./login.php'>Log in</a>            
           <?php else : ?>
-            <a href='./Account/logout.php'>Logout</a>
+            <a href='./Account/logout.php'>Log out</a>
           <?php endif ?>
         </span>
       </div>
@@ -70,14 +67,14 @@
         </table>
 
         <div class="form-inline">
-          <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">Previous</button>
+          <button class="btn btn-outline-primary col-sm-6" id="previous" onClick="previous()">Previous</button>
 
-          <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">Next</button>
+          <button class="btn btn-outline-primary col-sm-6" id="next" onClick="next()">Next</button>
         </div>
         <br />
         <form class="form-inline">
           <label class="lead mr-2 ml-2" for="month">Jump To: </label>
-          <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
+          <select class="form-control col-sm-4" name="month" id="month" onChange="jump()">
             <option value=0>Jan</option>
             <option value=1>Feb</option>
             <option value=2>Mar</option>
@@ -92,7 +89,7 @@
             <option value=11>Dec</option>
           </select>
 
-          <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump()">
+          <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onChange="jump()">
             <option value=2020>2020</option>
             <option value=2021>2021</option>
             <option value=2022>2022</option>
@@ -107,13 +104,18 @@
           </select>
         </form>
 
+        <form action="availability.php" method="post">
+          <div style="text-align:center;">
+            selected date:
+            <input id="selectDate" name="selectDate" class="selectDate"><br>
+            <button type="submit" id="save" class="submit">Submit</button>
+          </div>
+        </form>
+
       </div>
     </div>
   </div>
-  <form action="availability.php" method="post">
-    <input id="selectDate" name="selectDate" class="form-control" readonly>
-    <button type="submit" id="save">Submit</button>
-  </form>
+  
 </body>
 
 </html>
