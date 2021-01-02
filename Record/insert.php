@@ -63,10 +63,10 @@ function timeToStr($time)
     return $timeStr;
 }
 
-function emailBody($date, $time, $room)
+function emailBody($date, $time, $room, $email, $member1, $member2, $member3, $member4)
 {
     $m_time = timeToStr($time);
-    $m_body = "<html><span>This is a meeting Reminder.</span><br><span>Date: $date</span><br><span>Time: $m_time</span><br><span>Room: $room</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br><br>";
+    $m_body = "<html><span>This is a meeting reminder.</span><br><span>Date: $date</span><br><span>Time: $m_time</span><br><span>Room: $room</span><br><span>Host: $email<span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br></span><br>";
     $timeStrArr = array(
         "08:00", "09:00", "10:00", "11:00", "12:00",
         "13:00", "14:00", "15:00", "16:00", "17:00"
@@ -136,20 +136,21 @@ $mail->WordWrap = 70;
 //$time_mailbody = timeToStr($time);
 //$tmp_url = googleCalendarURL($date, $time, $room);
 //$mail->Body = "<html><span>This is a meeting Reminder.</span><br><span>Date: $date</span><br><span>Time: $time_mailbody</span><br><span>Room: $room</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br></span><span>$tmp_url</span><br></html>";
-$mail->Body = emailBody($date, $time, $room);
+$mail->Body = emailBody($date, $time, $room,$record->email,$record->member1,$record->member2,$record->member3,$record->member4);
 $mail->AddAddress($record->email);
-if (!isset($member1)) {
-    $mail->AddAddress($member1);
+if (isset($member1)) {
+    $mail->AddAddress($record->member1);
 }
-if (!isset($member2)) {
-    $mail->AddAddress($member2);
+if (isset($member2)) {
+    $mail->AddAddress($record->member2);
 }
-if (!isset($member3)) {
-    $mail->AddAddress($member3);
+if (isset($member3)) {
+    $mail->AddAddress($record->member3);
 }
-if (!isset($member4)) {
-    $mail->AddAddress($member4);
+if (isset($member4)) {
+    $mail->AddAddress($record->member4);
 }
+
 $mail->Send();
 // if (!$mail->Send()) {
 //     echo "Mailer Error: " . $mail->ErrorInfo;

@@ -52,10 +52,13 @@ function timeToStr($time)
     return $timeStr;
 }
 
+
+
 function cancelEmailBody($date, $time, $room, $email, $member1, $member2, $member3, $member4)
 {
-    $m_time = timeToStr($time);
-    $m_body = "<html><span>Your meeting has been cancelled.</span><br><span>Date: $date</span><br><span>Time: $m_time</span><br><span>Room: $room</span><br><span>Host:$email</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br></span><br></html>";
+    $timeStrArr=array("08:00-09:00","09:00-10:00","10:00-11:00","11:00-12:00","12:00-13:00","13:00-14:00","14:00-15:00","15:00-16:00"."16:00-17:00");
+    $m_time = $timeStrArr[$time];
+    $m_body = "<html><span>Your meeting has been cancelled.</span><br><span>Date: $date</span><br><span>Time: $m_time</span><br><span>Room: $room</span><br><span>Host: $email</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br></span><br></html>";
     return $m_body;
 }
 
@@ -84,16 +87,17 @@ $mail->Subject = "Virtual Room Reservation System Notification";     //信件主
 // $mail->Body = "<html><span>This is a meeting Reminder.</span><br><span>Date: $date</span><br><span>Time: $time_mailbody</span><br><span>Room: $room</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br></span><span>$tmp_url</span><br></html>";
 $mail->Body = cancelEmailBody($data->date, $data->time, $data->room, $email, $member1, $member2, $member3, $member4);
 $mail->AddAddress($email);   //host信箱
-if (!isset($member1)) {
+
+if (isset($member1)) {
     $mail->AddAddress($member1);
 }
-if (!isset($member2)) {
+if (isset($member2)) {
     $mail->AddAddress($member2);
 }
-if (!isset($member3)) {
+if (isset($member3)) {
     $mail->AddAddress($member3);
 }
-if (!isset($member4)) {
+if (isset($member4)) {
     $mail->AddAddress($member4);
 }
 $mail->Send();
