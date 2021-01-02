@@ -23,8 +23,7 @@ if (!isset($selectDate)) {
   <title>Virtual Room Reservation Assistant</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/myCSS.css">
+  <link rel="stylesheet" href="./css/all.css">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script> -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
@@ -62,7 +61,9 @@ if (!isset($selectDate)) {
     </nav>
     <!-- <h4>The date you choose is</h4> -->
     <!-- <p id="selected_date"></p> -->
-    <h2><?php echo ("$selectDateStr"); ?></h2>
+    <div style="text-align:center;">
+      <h2><br>Selected date: <?php echo ("$selectDateStr"); ?></h2>
+    </div>
     <div class="col-sm-4 col-md-7 col-lg-4 mt-5">
       <div id="myModal" class="modal fade">
         <div class="modal-dialog" role="document">
@@ -269,12 +270,14 @@ if (!isset($selectDate)) {
     </div>
   </div>
   <!-- <div id="result"></div> -->
-  <?php if (isset($authUrl)) : ?>
-    <h1>After logging in, you can reserve a room.</h1>
-  <?php else : ?>
-    <button id="submit" type="button" class="btn btn-primary" onclick="confirmTimeSlot()">Sumbit</button>
-    <button type="button" class="btn btn-secondary" onclick="clearSelected()">Clear</button>
-  <?php endif ?>
+  <div style="text-align:center;">
+    <?php if (isset($authUrl)) : ?>
+      <h1>After logging in, you can reserve a room.</h1>
+    <?php else : ?>
+      <button id="submit" type="button" class="submit" onclick="confirmTimeSlot()">Sumbit</button>
+      <button type="button" class="clear" onclick="clearSelected()">Clear</button>
+    <?php endif ?>
+  </div>
 </body>
 
 </html>
