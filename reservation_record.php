@@ -94,31 +94,31 @@ if (isset($authUrl)) {
                   <input type="hidden" name="time" value="<?php echo $record[1]; ?>">
                   <?php
                   switch ($record[1]) {
-                    case '1':
+                    case '0':
                       echo "08:00-09:00";
                       break;
-                    case '2':
+                    case '1':
                       echo "09:00-10:00";
                       break;
-                    case '3':
+                    case '2':
                       echo "10:00-11:00";
                       break;
-                    case '4':
+                    case '3':
                       echo "11:00-12:00";
                       break;
-                    case '5':
+                    case '4':
                       echo "12:00-13:00";
                       break;
-                    case '6':
+                    case '5':
                       echo "13:00-14:00";
                       break;
-                    case '7':
+                    case '6':
                       echo "14:00-15:00";
                       break;
-                    case '8':
+                    case '7':
                       echo "15:00-16:00";
                       break;
-                    case '9':
+                    case '8':
                       echo "16:00-17:00";
                       break;
                   }

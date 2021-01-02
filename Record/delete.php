@@ -16,6 +16,13 @@ $member4 = isset($_POST['member4']) ? $_POST['member4'] : '';
 
 $objDBController = new DBController();
 $objDBController->deleteReocrd($data);
+$email = $objDBController->SearchuserEmail($data);
+
+// Add Email Function
+
+
+//
+
 
 unset($objDBController);
 unset($data);

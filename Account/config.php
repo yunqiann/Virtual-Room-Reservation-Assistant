@@ -97,13 +97,22 @@ class DBController
 		return $id;
 	}
 
+	function SearchuserEmail($record)
+	{
+		$query = "SELECT email FROM USERS WHERE id=(SELECT userID FROM Record WHERE useDate='$record->date' and timeSlot='$record->time' and roomID='$record->room')";
+		if ($result = mysqli_fetch_row($this->conn, $query)) {
+			$row = mysqli_fetch_row($result);
+		}
+		return $row[0];
+	}
+
 	# 查詢 Room 什麼時間被使用
 	function SearchRoomTime($record)
 	{
 		//查詢是否存在
 		$query = "SELECT EXISTS(SELECT * from Record WHERE useDate='$record->date' and timeSlot='$record->time' and roomID='$record->room')";
 		if ($result = mysqli_query($this->conn, $query)) {
-			$useBool=  mysqli_fetch_row($result);
+			$useBool =  mysqli_fetch_row($result);
 		} else die("Error:" . mysqli_error($this->con));
 		return $useBool[0];
 	}
