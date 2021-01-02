@@ -100,10 +100,11 @@ class DBController
 	function SearchuserEmail($record)
 	{
 		$query = "SELECT email FROM USERS WHERE id=(SELECT userID FROM Record WHERE useDate='$record->date' and timeSlot='$record->time' and roomID='$record->room')";
-		if ($result = mysqli_fetch_row($this->conn, $query)) {
+		if ($result = mysqli_query($this->conn, $query)) {
 			$row = mysqli_fetch_row($result);
-		}
-		return $row[0];
+			$email = $row[0];
+		} else die("Error:" . mysqli_error($this->conn));
+		return $email;
 	}
 
 	# 查詢 Room 什麼時間被使用

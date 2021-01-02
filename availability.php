@@ -136,7 +136,7 @@ if (!isset($selectDate)) {
                           ", Member1: " + member1 + ", Member2: " + member2 + ", Member3: " + member3 +
                           ", Member4: " + member4;
                         console.log(result);
-                        window.location = "http://localhost/reservation_record.php";
+                        window.location = "./reservation_record.php";
                         // var sql = "INSERT INTO Record VALUES ('" + date + "','" + time + "','" + email + "','" + room +
                         // "','" + member1 + "','" + member2 + "','" + member3 + "','" + member4 + "')";
                         // console.log(sql);
@@ -144,7 +144,7 @@ if (!isset($selectDate)) {
                       },
                       error: function(xhr) {
                         console.log(xhr.status);
-                        window.location = "http://localhost/reservation_record.php";
+                        window.location = "./reservation_record.php";
                       }   
                     });
                   });

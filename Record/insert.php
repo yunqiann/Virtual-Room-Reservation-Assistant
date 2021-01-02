@@ -34,6 +34,8 @@ for ($i = 0; $i < count($time); $i++) {
     $objDBController->insertReocrd($record);
 }
 
+echo json_encode($record);
+
 function timeToStr($time)
 {
     $timeStr = "";
@@ -115,6 +117,9 @@ function emailBody($date, $time, $room)
 $mail = new PHPMailer();
 $mail->SMTPSecure = "ssl";
 $mail->Host = "smtp.gmail.com";
+// $mail->Host = gethostbyname("smtp.gmail.com");
+// $mail->SMTPOptions = array('ssl' => array('verify_peer_name' => false));
+// $mail->SMTPDebug = 3;
 $mail->Port = 465;
 $mail->CharSet = "utf-8";    //信件編碼
 $mail->Username = "seproject1804@gmail.com";        //帳號，例:example@gmail.com
@@ -132,6 +137,7 @@ $mail->WordWrap = 70;
 //$tmp_url = googleCalendarURL($date, $time, $room);
 //$mail->Body = "<html><span>This is a meeting Reminder.</span><br><span>Date: $date</span><br><span>Time: $time_mailbody</span><br><span>Room: $room</span><br><span>Member(s): <br>$member1<br>$member2<br>$member3<br>$member4<br></span><span>$tmp_url</span><br></html>";
 $mail->Body = emailBody($date, $time, $room);
+$mail->AddAddress($record->email);
 if (!isset($member1)) {
     $mail->AddAddress($member1);
 }
@@ -144,10 +150,11 @@ if (!isset($member3)) {
 if (!isset($member4)) {
     $mail->AddAddress($member4);
 }
-if (!$mail->Send()) {
-    echo "Mailer Error: " . $mail->ErrorInfo;
-}
+$mail->Send();
+// if (!$mail->Send()) {
+//     echo "Mailer Error: " . $mail->ErrorInfo;
+// }
 unset($objDBController);
 unset($mail);
 
-echo json_encode($record);
+
