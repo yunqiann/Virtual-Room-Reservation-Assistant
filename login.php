@@ -25,12 +25,14 @@
           <!-- <li class="nav-item active">
             <a class="nav-link" href="login.php">Login<span class="sr-only">(current)</span></a>
           </li> -->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="availability.php">Availability</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="reservation_record.php">Reservation Record</a>
-          </li>
+          </li> -->
+          <?php if (!isset($authUrl)) : ?>
+            <li class="nav-item">
+              <a class="nav-link" href="reservation_record.php">Reservation Record</a>
+            </li>
+          <?php endif ?>
         </ul>
         <span class="navbar-text">
           <?php if (isset($authUrl)) : ?>
@@ -57,9 +59,10 @@
         <?php else : ?>
           <br><br>
           <img class="circle-image" src="<?php echo $userData["picture"]; ?>" width="200px" size="200px" /><br />
-          <br><p class="welcome">Welcome</p><br>
+          <br>
+          <p class="welcome">Welcome</p><br>
           <p class="oauthemail"><?php echo $userData["name"]; ?> </p>
-          <p class="oauthemail"><?php echo $userData["email"];?></p>
+          <p class="oauthemail"><?php echo $userData["email"]; ?></p>
           <?php header("Location: index.php"); ?>
           <!-- <div class='logout'><a href='./logout.php'>Logout</a></div> -->
         <?php endif ?>

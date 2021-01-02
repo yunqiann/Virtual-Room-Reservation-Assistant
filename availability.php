@@ -2,25 +2,17 @@
 require_once "Account/google_auth.php";
 require_once "Account/config.php";
 
-// $selectDateStr = '';
-// if ($selectDateStr = $_POST['selectDate']) {
-//   date_default_timezone_set('Asia/Taipei');
-//   // $selectDateStr = $_POST['selectDate'];
-//   $selectDate = date_create($selectDateStr);
-//   $today = date("Y-m-d");
-//   if ($selectDateStr < $today) {
-//     header("Location: index.php");
-//   }
-// }
-
 date_default_timezone_set('Asia/Taipei');
 $selectDateStr = $_POST['selectDate'] ? $_POST['selectDate'] : '';
-$selectDate = date_create($selectDateStr);
-$today = date("Y-m-d");
 
-if ($selectDateStr < $today) {
-  header("Location: index.php");
+if (!isset($selectDate)) {
+  $selectDate = date_create($selectDateStr);
+  $today = date("Y-m-d");
+  if ($selectDateStr < $today) {
+    header("Location: index.php");
+  }
 }
+
 ?>
 
 <!-- <!DOCTYPE html> -->
@@ -47,9 +39,9 @@ if ($selectDateStr < $today) {
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="availability.php">Availability</a>
-          </li>
+          </li> -->
           <?php if (!isset($authUrl)) : ?>
             <li class="nav-item">
               <a class="nav-link" href="reservation_record.php">Reservation Record</a>
@@ -152,7 +144,8 @@ if ($selectDateStr < $today) {
                       },
                       error: function(xhr) {
                         console.log(xhr.status);
-                      }
+                        window.location = "http://localhost/reservation_record.php";
+                      }   
                     });
                   });
                   return false;
