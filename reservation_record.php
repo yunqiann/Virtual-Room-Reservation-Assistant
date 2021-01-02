@@ -84,7 +84,7 @@ if (isset($authUrl)) {
 
           foreach ($records as $record) {
           ?>
-            <form action="Record/delete.php" method="post">
+            <form action="Record/delete.php" method="POST">
               <tr>
                 <td>
                   <?php echo $record[0]; ?>
@@ -129,9 +129,13 @@ if (isset($authUrl)) {
                   <input type="hidden" name="room" value="<?php echo $record[2]; ?>">
                 </td>
                 <td><?php echo $record[3]; ?></td>
+                <input type="hidden" name="member1" value="<?php echo $record[3]; ?>">
                 <td><?php echo $record[4]; ?></td>
+                <input type="hidden" name="member2" value="<?php echo $record[4]; ?>">
                 <td><?php echo $record[5]; ?></td>
+                <input type="hidden" name="member3" value="<?php echo $record[5]; ?>">
                 <td><?php echo $record[6]; ?></td>
+                <input type="hidden" name="member4" value="<?php echo $record[6]; ?>">
                 <td>
                   <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                 </td>
