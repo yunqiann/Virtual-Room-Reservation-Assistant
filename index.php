@@ -109,7 +109,7 @@
         <form action="availability.php" method="post">
           <div style="text-align:center;">
             selected date:
-            <input id="selectDate" name="selectDate" class="selectDate"><br>
+            <input id="selectDate" name="selectDate"><br><br>
             <button type="submit" id="save" class="submit">Submit</button>
           </div>
         </form>
