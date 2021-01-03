@@ -28,16 +28,18 @@
           <!-- <li class="nav-item active">
             <a class="nav-link" href="login.php">Login<span class="sr-only">(current)</span></a>
           </li> -->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="availability.php">Availability</a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="reservation_record.php">Reservation Record</a>
+            <?php if (!isset($authUrl)) : ?>
+              <a class="nav-link" href="reservation_record.php">Reservation Record</a>
+            <?php endif ?>
           </li>
         </ul>
         <span class="navbar-text">
           <?php if (isset($authUrl)) : ?>
-            <a href='./login.php'>Log in</a>            
+            <a href='./login.php'>Log in</a>
           <?php else : ?>
             <a href='./Account/logout.php'>Log out</a>
           <?php endif ?>
@@ -115,7 +117,7 @@
       </div>
     </div>
   </div>
-  
+
 </body>
 
 </html>
