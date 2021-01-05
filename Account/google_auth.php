@@ -5,7 +5,7 @@ require_once 'vendor/autoload.php';
 
 $client_id = '601596676323-oc7v689e4ht9ncstqctb44nf7508blqq.apps.googleusercontent.com';
 $client_secret = 'T9K860mYA_bsj2jVcTEJpVuv';
-$redirect_uri = 'http://www.vrrs.ml/login.php';
+$redirect_uri = 'http://localhost/login.php';
 
 $client = new Google_Client();
 $client->setApplicationName("PHP Google OAuth Login Example");
