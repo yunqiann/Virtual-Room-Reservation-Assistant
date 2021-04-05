@@ -2,7 +2,7 @@
 class DBController
 {
 	private $host = "localhost";
-	private $user = "yunqian";
+	private $user = "user";
 	private $password = "123456";
 	private $database = "Test";
 	private $conn = null;
